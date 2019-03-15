@@ -1,9 +1,8 @@
+
+
 #!/bin/python3
 
-import math
 import os
-import random
-import re
 import sys
 
 class SinglyLinkedListNode:
@@ -36,7 +35,7 @@ def print_singly_linked_list(node, sep, fptr):
         if node:
             fptr.write(sep)
 
-# Complete the deleteNode function below.
+# Complete the compare_lists function below.
 
 #
 # For your reference:
@@ -46,16 +45,24 @@ def print_singly_linked_list(node, sep, fptr):
 #     SinglyLinkedListNode next
 #
 #
-def deleteNode(head, position):
-    #When deleting the head
-    if position == 0:
-        return head.next
-    else:
-        #When deleting at other positions
-        curr = head
-        for _ in range(position-1):
-            curr = curr.next
-        curr.next = curr.next.next
-        return head
+'''
 
-if __name__ == '__main__':
+1 ->    2 ->    3 ->    None
+
+1 ->    2 ->    None
+
+have two pointers. Check that they are same value. Keep moving to next.
+
+'''
+def compare_lists(llist1, llist2):
+    while llist1 != None and llist2 != None:
+        if llist1.data != llist2.data:
+            return 0
+        llist1 = llist1.next
+        llist2 = llist2.next
+    
+    #both points should be at None. If not, the lists are not the same length
+    if llist1 == None and llist2 == None:
+        return 1
+    else:
+        return 0
